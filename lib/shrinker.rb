@@ -9,7 +9,7 @@ class Shrinker
       raise ShrinkError.new("Supplied URL was not formatted as a URL.  Please format it as http://www.domain.com/")
     end
 
-    encoded_url = URI.encode(IS_GD_URL + url)
+    encoded_url = URI::DEFAULT_PARSER.escape(IS_GD_URL + url)
 
     begin
       shrunken_url = OpenURI.open_uri(encoded_url, 'r') { |file| file.read }
